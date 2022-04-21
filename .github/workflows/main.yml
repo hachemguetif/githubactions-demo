@@ -37,6 +37,7 @@ jobs:
     steps:
     - name: update
       run: |
+          
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
           sed -i 's/\(cicd\)\(.*\)/\1:'$IMAGE_TAG'/' ./deployment.yaml
@@ -47,6 +48,6 @@ jobs:
           git add .
           git commit -m "new tag image update"
           # Push quietly to prevent showing the token in log
-          git push -q https://$PERSONAL_GITHUB_TOKEN@github.com/hachemguetif/ArgoCD-repo.git main
+          git push -q https://hachemguetif:$PERSONAL_GITHUB_TOKEN@github.com/hachemguetif/ArgoCD-repo.git main
  
           
