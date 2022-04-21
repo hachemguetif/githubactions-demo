@@ -28,5 +28,5 @@ jobs:
       env:
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
-        docker build -t $DOCKER_USER/$REPO_NAME:$IMAGE_TAG .
+        docker build --tag $DOCKER_USER/$REPO_NAME:$IMAGE_TAG .
         docker push $DOCKER_USER/$REPO_NAME:$IMAGE_TAG
