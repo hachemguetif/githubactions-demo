@@ -43,6 +43,7 @@ jobs:
           git config credential.helper 'cache --timeout=120'
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
+          git config --global hub.protocol https
           git add .
           git commit -m "new image update"
           # Push quietly to prevent showing the token in log
