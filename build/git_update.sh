@@ -31,9 +31,12 @@ VNUM3=${CURRENT_VERSION_PARTS[2]}
 if [[ $VERSION == 'major' ]]
 then
   VNUM1=v$((VNUM1+1))
+  VNUM2=0
+  VNUM3=0
 elif [[ $VERSION == 'minor' ]]
 then
   VNUM2=$((VNUM2+1))
+  VNUM3=0
 elif [[ $VERSION == 'patch' ]]
 then
   VNUM3=$((VNUM3+1))
@@ -60,6 +63,6 @@ else
   echo "Already a tag on this commit"
 fi
 
-echo ::set-output name=git-tag::$NEW_TAG
+echo ::set-output name=git-tag:$NEW_TAG
 
 exit 0
