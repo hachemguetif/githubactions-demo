@@ -64,7 +64,7 @@ jobs:
           
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
-          rsync /tmp/deploy-artifact/deployment.yaml .
+          cp /tmp/deploy-artifact/deployment.yaml .
           
           git config --global credential.helper 'cache --timeout 3600'
           git config user.email "hachem.guetiff@gmail.com"
