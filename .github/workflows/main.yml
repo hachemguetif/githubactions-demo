@@ -47,6 +47,6 @@ jobs:
           git add .
           git commit -m "new image update"
           # Push quietly to prevent showing the token in log
-          git push -q https://$PERSONAL_TOKEN_GITHUB@github.com/hachemguetif/ArgoCD-repo.git main
+          git push -q https://$PERSONAL_GITHUB_TOKEN@github.com/hachemguetif/ArgoCD-repo.git main
  
           
