@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: copy arm templates
-      run: Copy 'deployment.yaml/' '${{ github.workspace }}/deployment.yaml'
-      shell: bash
+      run: cp deployment.yaml ${{ github.workspace }}
+      
 
     - name: deployment file
       uses: actions/upload-artifact@v2
