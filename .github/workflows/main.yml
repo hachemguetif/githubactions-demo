@@ -13,7 +13,7 @@ jobs:
 
     - shell: bash
       run: |
-          cat depolyment.yaml > deployment.yaml
+          cat ./.github/workflows/depolyment.yaml > deployment.yaml
     - name: Upload math result for job 1
       uses: actions/upload-artifact@v3
       with:
