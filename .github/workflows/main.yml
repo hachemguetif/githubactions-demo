@@ -11,12 +11,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: 'Upload Artifact'
+    - shell: bash
+      run: |
+          cat depolyment.yaml > deployment.yaml
+    - name: Upload math result for job 1
       uses: actions/upload-artifact@v3
       with:
-        name: my-artifact
-        path: deployment.yaml
-        retention-days: 5  
+          name: homework
+          path: deployment.yaml
+
  
     - name: Login to Dockerhub
       env:
