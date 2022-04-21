@@ -8,15 +8,6 @@ jobs:
     name: Build and Push to Dockerhub
     runs-on: ubuntu-latest
     steps:
-    - run: mkdir -p path/to/artifact
-
-    - run: cp deployemnt.yaml /path/to/artifact/
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: deployment file
-        path: path/to/artifact/deployment.yaml
-
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -44,15 +35,11 @@ jobs:
     name: Update Image tags in ArgoCD repo
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: deployment file
     - name: update
       run: |
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
-          cp path/to/artifact/deployment.yaml .
-          sed -i 's/\(cicd\)\(.*\)/\1:'$TAG'/' ./deployment.yaml
+          sed -i 's/\(cicd\)\(.*\)/\1:'$TAG'/' /tmp/Webapp-ArgoCD/ArgoCD-repo/deployment.yaml
           git config credential.helper 'cache --timeout=120'
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
