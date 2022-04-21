@@ -41,11 +41,11 @@ jobs:
           cd /tmp/Webapp-ArgoCD
           sed -i 's/\(cicd\)\(.*\)/\1:'$IMAGE_TAG'/' ./deployment.yaml
           git config --global credential.helper 'cache --timeout 3600'
-          git config --unset-all http.https://github.com/.extraheader
+          
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
           git add .
-          git commit -m "new image update"
+          git commit -m "new tag image update"
           # Push quietly to prevent showing the token in log
           git push -q https://$PERSONAL_GITHUB_TOKEN@github.com/hachemguetif/ArgoCD-repo.git main
  
