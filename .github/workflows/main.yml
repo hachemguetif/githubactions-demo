@@ -11,6 +11,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: deployment.yaml
+        retention-days: 5  
+ 
     - name: Login to Dockerhub
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -43,7 +50,7 @@ jobs:
           git config user.name "hachemguetif"
           git add .
           git commit -m "new tag image update"
-          # Push quietly to prevent showing the token in log
+         
           git remote set-url origin "https://hachemguetif:${token}@github.com/hachemguetif/ArgoCD-repo.git"
           git push origin main
 
