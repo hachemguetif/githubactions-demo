@@ -36,7 +36,7 @@ jobs:
           
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
-          sed -i 's/\(cicd\)\(.*\)/\1:'13'/' ./deployment.yaml
+          sed -i 's/\(cicd\)\(.*\)/\1:'IMAGE_TAG'/' ./deployment.yaml
           git config --global credential.helper 'cache --timeout 3600'
           
           git config user.email "hachem.guetiff@gmail.com"
@@ -49,5 +49,6 @@ jobs:
 
       env: 
         token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
  
           
