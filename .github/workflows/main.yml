@@ -28,5 +28,5 @@ jobs:
       env:
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
-        docker build --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:$IMAGE_TAG .
+        docker build --file Dockerfile --tag hachemguetif/cicd:$IMAGE_TAG .
         docker push $DOCKER_USER/$REPO_NAME:$IMAGE_TAG
