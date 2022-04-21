@@ -37,7 +37,7 @@ jobs:
     steps:
     - name: update
       run: |
-          
+          git remote set-url origin https://hachemguetif:$PERSONAL_GITHUB_TOKEN@github.com/hachemguetif/ArgoCD-repo.git
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
           sed -i 's/\(cicd\)\(.*\)/\1:'$IMAGE_TAG'/' ./deployment.yaml
