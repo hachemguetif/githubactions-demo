@@ -54,6 +54,8 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: deploy
+        path: /tmp/deploy-artifact/deployment.yaml
+
 
     - name: Update Image tags in ArgoCD repo
       run: |
