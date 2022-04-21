@@ -8,6 +8,12 @@ jobs:
     name: Build and Push to Dockerhub
     runs-on: ubuntu-latest
     steps:
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v3
+      with:
+          name: deployment
+          path: deployment.yaml
+
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -30,15 +36,6 @@ jobs:
       run: |
         docker build --file Dockerfile --tag hachemguetif/cicd:$IMAGE_TAG .
         docker push hachemguetif/cicd:$IMAGE_TAG
-    
-    - run: mkdir -p path/to/artifact
-
-    - run: cp deployemnt.yaml /path/to/artifact/
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: deployment file
-        path: path/to/artifact/deployment.yaml
 
   Update-ArgoCD-repo:
     name: Update Image tags in ArgoCD repo
@@ -46,7 +43,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v2
       with:
-        name: deployment file
+        name: deployment
     - name: update
       run: |
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
