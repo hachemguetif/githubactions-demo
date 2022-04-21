@@ -48,6 +48,10 @@ jobs:
           git add .
           git commit -m "new tag image update"
           # Push quietly to prevent showing the token in log
-          git push -q https://hachemguetif:$PERSONAL_GITHUB_TOKEN@github.com/hachemguetif/ArgoCD-repo.git main
+          git remote set-url origin "https://hachemguetif:${token}@github.com/hachemguetif/ArgoCD-repo.git"
+          git push origin main
+
+      env: 
+        token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
  
           
