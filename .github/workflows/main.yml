@@ -11,18 +11,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    
-    - name: clone
-      run: |
-           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/deploy-artifact
-
-    - name: artifact      
-      uses: actions/upload-artifact@v3
-      with:
-          name: deploy
-          path: /tmp/deploy-artifact/deployment.yaml
-
- 
     - name: Login to Dockerhub
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -43,14 +31,38 @@ jobs:
         docker build --file Dockerfile --tag hachemguetif/cicd:$IMAGE_TAG .
         docker push hachemguetif/cicd:$IMAGE_TAG
 
+    - name: clone
+      run: |
+           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/deploy-artifact
+
+    - name: artifact      
+      uses: actions/upload-artifact@v3
+      with:
+          name: deploy
+          path: /tmp/deploy-artifact/deployment.yaml
+
+
+
+  
+
+  Deploy:
+    name: Update Image tag in ArgoCD repo
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Download the deployment file
+      uses: actions/download-artifact@v2
+      with:
+        name: deploy
+
     - name: Update Image tags in ArgoCD repo
       run: |
           
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
+          cp /tmp/deploy-artifact/deployment.yaml .
           sed -i 's/\(cicd\)\(.*\)/\1:'$IMAGE_TAG'/' ./deployment.yaml
           git config --global credential.helper 'cache --timeout 3600'
-          
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
           git add .
