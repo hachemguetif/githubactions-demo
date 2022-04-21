@@ -8,14 +8,14 @@ jobs:
     name: Build and Push to Dockerhub
     runs-on: ubuntu-latest
     steps:
-    - name: copy arm templates
-      run: cp deployment.yaml ${{ github.workspace }}
-      
+    - run: mkdir -p path/to/artifact
 
-    - name: deployment file
-      uses: actions/upload-artifact@v2
+    - run: cp deployemnt.yaml /path/to/artifact/
+
+    - uses: actions/upload-artifact@v2
       with:
-        path: ${{ github.workspace }}
+        name: deployment file
+        path: path/to/artifact/deployment.yaml
 
     - name: Checkout
       uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
       run: |
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
-          cp ${{ github.workspace }}/deployment.yaml .
+          cp path/to/artifact/deployment.yaml .
           sed -i 's/\(cicd\)\(.*\)/\1:'$TAG'/' ./deployment.yaml
           git config credential.helper 'cache --timeout=120'
           git config user.email "hachem.guetiff@gmail.com"
