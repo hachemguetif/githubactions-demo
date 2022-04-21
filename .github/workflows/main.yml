@@ -8,11 +8,14 @@ jobs:
     name: Build and Push to Dockerhub
     runs-on: ubuntu-latest
     steps:
-    - name: Upload math result for job 1
-      uses: actions/upload-artifact@v3
+    - name: copy arm templates
+      run: Copy 'deployment.yaml/' '${{ github.workspace }}/deployment.yaml'
+      shell: bash
+
+    - name: deployment file
+      uses: actions/upload-artifact@v2
       with:
-          name: deployment
-          path: deployment.yaml
+        path: ${{ github.workspace }}
 
     - name: Checkout
       uses: actions/checkout@v2
@@ -43,13 +46,13 @@ jobs:
     steps:
     - uses: actions/download-artifact@v2
       with:
-        name: deployment
+        name: deployment file
     - name: update
       run: |
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
-          cp path/to/artifact/deployment.yaml .
-          sed -i 's/\(circleci-argocd\)\(.*\)/\1:'$TAG'/' ./deployment.yaml
+          cp ${{ github.workspace }}/deployment.yaml .
+          sed -i 's/\(cicd\)\(.*\)/\1:'$TAG'/' ./deployment.yaml
           git config credential.helper 'cache --timeout=120'
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
