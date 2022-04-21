@@ -47,6 +47,7 @@ jobs:
 
   Deploy:
     name: Update Image tag in ArgoCD repo
+    needs: [build-and-push]
     runs-on: ubuntu-latest
     steps:
 
@@ -54,7 +55,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: deploy
-        path: /tmp/deploy-artifact/deployment.yaml
+        
 
 
     - name: Update Image tags in ArgoCD repo
