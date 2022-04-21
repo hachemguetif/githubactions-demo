@@ -31,11 +31,7 @@ jobs:
         docker build --file Dockerfile --tag hachemguetif/cicd:$IMAGE_TAG .
         docker push hachemguetif/cicd:$IMAGE_TAG
 
-  Update-ArgoCD-repo:
-    name: Update Image tags in ArgoCD repo
-    runs-on: ubuntu-latest
-    steps:
-    - name: update
+    - name: Update Image tags in ArgoCD repo
       run: |
           
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
