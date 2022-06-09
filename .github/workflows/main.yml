@@ -31,19 +31,7 @@ jobs:
         docker build --file Dockerfile --tag hachemguetif/cicd:$IMAGE_TAG .
         docker push hachemguetif/cicd:$IMAGE_TAG
 
-    - name: clone
-      run: |
-           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/deploy-artifact
-
-    - name: artifact      
-      uses: actions/upload-artifact@v3
-      with:
-          name: deploy
-          path: /tmp/deploy-artifact/deployment.yaml
-
-
-
-  
+-------------------------------------------------------------------------------------
 
   Deploy:
     name: Update Image tag in ArgoCD repo
