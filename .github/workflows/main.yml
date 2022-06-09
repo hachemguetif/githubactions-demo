@@ -38,7 +38,7 @@ jobs:
     needs: [build-and-push]
     runs-on: ubuntu-latest
     steps:
-    - name: Update Image tags in ArgoCD repo
+    - name: Update Image tags in ArgoCD repo.
       run: |
           
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
