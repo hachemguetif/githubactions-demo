@@ -35,7 +35,7 @@ jobs:
 
   Deploy:
     name: Update Image tag in ArgoCD repository
-    needs: [build-and-push]
+    needs: [Build_and_Push_to_Dockerhub]
     runs-on: ubuntu-latest
     steps:
     - name: Update Image tags in ArgoCD repo.
