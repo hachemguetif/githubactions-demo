@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 jobs:
   build-and-push:
-    name: Build_and_Push_to_Dockerhub
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -35,7 +35,7 @@ jobs:
 
   Deploy:
     name: Update Image tag in ArgoCD repository
-    needs: [Build_and_Push_to_Dockerhub]
+    needs: [Build]
     runs-on: ubuntu-latest
     steps:
     - name: Update Image tags in ArgoCD repo.
