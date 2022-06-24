@@ -4,8 +4,8 @@ on:
   push:
     branches: [ main ]
 jobs:
-  build-and-push:
-    name: Build
+  build-and-push-and-deploy:
+    name: CICD pipline
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -21,7 +21,7 @@ jobs:
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
-        bash ./build/git_update.sh -v minor 
+        bash ./build/git_update.sh -v patch 
 
     - name: Build, Tag, and Push the Image to Dockerhub
       id: build-image
