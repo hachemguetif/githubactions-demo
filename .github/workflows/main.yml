@@ -54,6 +54,7 @@ jobs:
 
       env: 
         token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         
  
           
