@@ -50,7 +50,7 @@ jobs:
           git add .
           git commit -m "new image tag update"
           git remote set-url origin "https://hachemguetif:${token}@github.com/hachemguetif/ArgoCD-repo.git"
-          git push origin main
+          git push 
 
       env: 
         token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
