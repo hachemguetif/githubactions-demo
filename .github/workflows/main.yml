@@ -48,7 +48,7 @@ jobs:
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
           git add .
-          git commit -m "new tag image update"
+          git commit -m "new image tag update"
           git remote set-url origin "https://hachemguetif:${token}@github.com/hachemguetif/ArgoCD-repo.git"
           git push origin main
 
