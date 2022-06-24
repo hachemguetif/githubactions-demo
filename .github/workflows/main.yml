@@ -35,7 +35,7 @@ jobs:
 
   Deploy:
     name: Update Image tag in ArgoCD repository
-    needs: [Build]
+    needs: [build-and-push]
     runs-on: ubuntu-latest
     steps:
     - name: Update Image tags in ArgoCD repo.
