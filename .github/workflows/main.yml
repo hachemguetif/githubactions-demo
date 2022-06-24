@@ -43,7 +43,7 @@ jobs:
           
           git clone https://github.com/hachemguetif/ArgoCD-repo /tmp/Webapp-ArgoCD
           cd /tmp/Webapp-ArgoCD
-          sed -i 's/\(cicd\)\(.*\)/\1:'$IMAGE_TAG'/' ./deployments/deployment.yaml
+          sed -i 's/\(cicd\)\(.*\)/\1:'1'/' ./deployments/deployment.yaml
           git config --global credential.helper 'cache --timeout 3600'
           git config user.email "hachem.guetiff@gmail.com"
           git config user.name "hachemguetif"
